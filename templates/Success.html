@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #DC143C;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        form {
+            margin: 0 auto; /* center the form */
+            max-width: 300px;
+            padding: 20px;
+        }
+        input {
+            margin-bottom: 1em; /* add one line space between each input */
+        }
+    </style>
+</head>
+<body>
+<h1>
+You are successfully logged in !!
+Please create your bank account
+    </h1>
+<form action="accform" method="post">
+      {% csrf_token %}
+    <button type="submit"> Apply </button>
+</form>
+
+<!--<p>{{ message }}</p>-->
+<!--<a href="indext.html">Return to home page</a>-->
+
+</body>
+</html>

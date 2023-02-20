@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Application Form</title>
+
+    <style>
+        body {
+            background-color: #DC143C;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        form {
+            margin: 0 auto; /* center the form */
+            max-width: 550px;
+            padding: 15px;
+        }
+        input {
+            margin-bottom: 1em; /* add one line space between each input */
+        }
+           h2 {
+            text-align: center;
+            color: yellow;
+            font-weight: bold;
+        }
+        </style>
+</head>
+<body>
+    <h1>Account Application Form</h1>
+    <form action="account_application" method="post">
+        {% csrf_token %}
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
+
+      <label for="dob">DOB:</label>
+      <input type="date" id="dob" name="dob"><br>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age"><br>
+
+      <label >Gender:</label>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label><br>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone"><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address"></textarea><br>
+
+      <label for="district">District:</label>
+      <select id="district" name="district">
+        <option value="ernakulam">Ernakulam</option>
+        <option value="thrissur">Thrissur</option>
+        <option value="kozhikode">Kozhikode</option>
+      </select><br>
+
+      <label for="branch">Branch:</label>
+      <select id="branch" name="branch">
+        <option value="">Kochi</option>
+          <option value="">Aluva</option>
+          <option value="">West Fort</option>
+          <option value="">Guruvayoor</option>
+          <option value="">Beypore</option>
+          <option value="">Farook</option>
+      </select><br>
+
+      <label for="account-type">Account Type:</label>
+      <select id="account-type" name="account-type">
+        <option value="savings">Savings Account</option>
+        <option value="current">Current Account</option>
+      </select><br>
+
+      <label>Materials Provided:</label>
+      <input type="checkbox" id="debit-card" name="materials-provided" value="debit-card">
+      <label for="debit-card">Debit Card</label>
+      <input type="checkbox" id="credit-card" name="materials-provided" value="credit-card">
+      <label for="credit-card">Credit Card</label>
+      <input type="checkbox" id="cheque-book" name="materials-provided" value="cheque-book">
+      <label for="cheque-book">Cheque Book</label><br>
+
+      <input type="submit" value="Submit">
+
+    </form>
+    <form action="logout" method="post">
+      {% csrf_token %}
+       <button type="submit"> Logout </button>
+    </form>
+    <h2>
+{% for msg in messages %}
+    {{msg}} <br>
+    <a href="http://127.0.0.1:8000/"> Return to home page</a>
+{% endfor %}
+    </h2>
+  </body>
+</html>

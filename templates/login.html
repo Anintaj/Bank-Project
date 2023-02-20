@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #DC143C;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        form {
+            margin: 0 auto; /* center the form */
+            max-width: 300px;
+            padding: 20px;
+        }
+        input {
+            margin-bottom: 1em; /* add one line space between each input */
+        }
+        </style>
+
+</head>
+<!--<body style="background-color:DarkSlateBlue">-->
+<form action="login" method="post">
+    {% csrf_token %}
+    <h2 style="color:Plum"> LOGIN HERE </h2>
+
+    <input  type="text" name="username" placeholder="Enter your username"><br>
+    <input type="password" name="password" placeholder="Create a password"><br>
+    <input type="submit">
+
+</form>
+<form action="create" method="post">
+    {% csrf_token %}
+     <h4 style="color:Plum"> If you don't have credentials  please Register </h4>
+    <button type="submit" > Register </button>
+</form>
+
+
+</body>
+</html>
