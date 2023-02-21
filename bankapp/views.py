@@ -15,7 +15,9 @@ def login(request):
         username =request.POST['username']
         password =request.POST['password']
         user=auth.authenticate(username=username,password=password)
-        if user is not None:
+        if not username or not password:
+            messages.error(request, "Please fill in all the required fields.")
+        elif user is not None:
             auth.login(request,user)
             return render(request, "Success.html")
         else:
@@ -31,7 +33,10 @@ def register(request):
         username = request.POST['username']
         password = request.POST['password']
         cpassword = request.POST['password1']
-        if password == cpassword:
+        if not username or not password or not cpassword:
+            messages.error(request, "Please fill in all the required fields.")
+            return render(request, "register.html")
+        elif password == cpassword:
             if User.objects.filter(username=username).exists():
                 messages.info(request, "Try another Username")
                 return redirect('register')
@@ -64,18 +69,18 @@ def account_application(request):
         district = request.POST.get('district')
         branch = request.POST.get('branch')
         account_type = request.POST.get('account-type')
-        materials_provided = request.POST.getlist('materials-provided')
-        acc = account(name=name, dob=dob, age=age, gender=gender, phone=phone, email=email,
+        materials_provided = request.POST.getlist('materials-provided'
+        
+        if not name or not dob or not age or not gender or not phone or not email or not address:
+            messages.error(request, "Please fill in all the required fields.")
+        elif account.objects.filter(email=email).exists():
+            messages.error(request, "An account with this email already exists.")
+        else:
+            acc = account(name=name, dob=dob, age=age, gender=gender, phone=phone, email=email,
                           address=address, district=district, branch=branch, account_type=account_type,
                           materials_provided=','.join(materials_provided))
-        acc.save()
-        if not account.objects.filter (name=name).exists():
-
-            messages.info(request,"Application Accepted")
-        else:
-            messages.info(request, "Application Accepted")
-        # return redirect('account_application')
-
+            acc.save()
+            messages.success(request, "Application accepted.")
     return render(request, "accform.html")
 def logout(request):
     auth.logout(request)
