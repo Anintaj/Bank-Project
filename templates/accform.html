@@ -62,16 +62,58 @@
         <option value="thrissur">Thrissur</option>
         <option value="kozhikode">Kozhikode</option>
       </select><br>
+        
+        <label for="branch">Branch:</label>
+<select id="branch" name="branch">
+  <option value="">Please select a district first</option>
+</select>
+<br>
 
-      <label for="branch">Branch:</label>
-      <select id="branch" name="branch">
-        <option value="">Kochi</option>
-          <option value="">Aluva</option>
-          <option value="">West Fort</option>
-          <option value="">Guruvayoor</option>
-          <option value="">Beypore</option>
-          <option value="">Farook</option>
-      </select><br>
+<script>
+  // Get references to the dropdowns
+  const districtDropdown = document.getElementById("district");
+  const branchDropdown = document.getElementById("branch");
+
+  // Define the options for each district
+  const districtOptions = {
+    ernakulam: ["Kochi", "Aluva"],
+    thrissur: ["West Fort", "Guruvayoor"],
+    kozhikode: ["Beypore", "Farook"]
+  };
+
+  // Function to update the branch dropdown based on the selected district
+  function updateBranchOptions() {
+    // Clear the existing options
+    branchDropdown.innerHTML = "";
+
+    // Get the selected district
+    const selectedDistrict = districtDropdown.value;
+
+    // If no district is selected, show a default option in the branch dropdown
+    if (selectedDistrict === "") {
+      const defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.textContent = "Please select a district first";
+      branchDropdown.appendChild(defaultOption);
+      return;
+    }
+
+    // Add the options for the selected district to the branch dropdown
+    districtOptions[selectedDistrict].forEach(optionValue => {
+      const option = document.createElement("option");
+      option.value = optionValue;
+      option.textContent = optionValue;
+      branchDropdown.appendChild(option);
+    });
+  }
+
+  // Add an event listener to the district dropdown to update the branch dropdown when the selection changes
+  districtDropdown.addEventListener("change", updateBranchOptions);
+
+  // Call the updateBranchOptions function to initialize the branch dropdown with the default options
+  updateBranchOptions();
+</script>
+
 
       <label for="account-type">Account Type:</label>
       <select id="account-type" name="account-type">
