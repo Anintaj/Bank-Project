@@ -37,8 +37,14 @@
     {% csrf_token %}
      <h4 style="color:Plum"> If you don't have credentials  please Register </h4>
     <button type="submit" > Register </button>
-</form>
+     <h2>
+{% for msg in messages %}
+    {{msg}} <br>
+{% endfor %}
+    </h2>
 
+</form>
+    
 
 </body>
 </html>
